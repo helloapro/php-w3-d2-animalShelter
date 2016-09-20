@@ -101,7 +101,7 @@
 
         function test_save()
         {
-            $id = 1;
+            $id = null;
             $category_id = 1;
             $name = "Bobby";
             $breed = "Husky";

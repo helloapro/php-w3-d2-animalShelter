@@ -50,13 +50,13 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO animals (id, category_id, name, breed, gender, date_admitted) VALUES ({$this->getId()}, {$this->getCategoryId()}, '{$this->getName()}', '{$this->getBreed()}', '{$this->getGender()}', '{$this->getDateAdmitted()}')");
+            $GLOBALS['DB']->exec("INSERT INTO animals (category_id, name, breed, gender, date_admitted) VALUES ({$this->getCategoryId()}, '{$this->getName()}', '{$this->getBreed()}', '{$this->getGender()}', '{$this->getDateAdmitted()}')");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll()
         {
-            $returned_animals = $GLOBALS['DB']->query("SELECT * FROM animals;");
+            $returned_animals = $GLOBALS['DB']->query("SELECT * FROM animals ORDER BY date_admitted ASC;");
             $animals = array();
             foreach($returned_animals as $animal) {
                 $id = $animal['id'];

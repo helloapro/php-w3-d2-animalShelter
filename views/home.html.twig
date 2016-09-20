@@ -11,6 +11,24 @@
     <body>
         <div class="container">
             <h1>Save the Animals!</h1>
+            <h3>Species of Small Furry Animals</h3>
+            {% if categories is not empty %}
+                <ul class="list-group">
+                    {% for category in categories %}
+                        <li class="list-group-item"><a href="/animals/{{ category.getId }}">{{ category.getName }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+              <p>There are no categories yet!</p>
+            {% endif %}
+
+            <form action="/categories" method="post">
+                <label for="category_name">Category name:</label>
+                <input id="category_name" name="category_name" type="text" class="form-control">
+
+                <button type="submit" class="btn">Add category</button>
+            </form>
+
         </div>
     </body>
 </html>

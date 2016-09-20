@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
+        <script src="/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+        <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/js/scripts.js" type="text/javascript"></script>        <title></title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Save the Animals!</h1>
+            <h3>{{ category.getName }}s</h3>
+            {% if animals is not empty %}
+                <ul class="list-group">
+                    {% for animal in animals %}
+                        <li class="list-group-item">{{ animal.getName }} the {{ category.find(animal.getCategoryId).getName}} ({{ animal.getGender }} / {{ animal.getBreed}}) Admitted on {{ animal.getDateAdmitted }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+              <p>There are no animals yet!</p>
+            {% endif %}
+
+            <form action="/animals/{{ category.getId }}" method="post">
+                <input id="category_id" name="category_id" type="hidden" value="{{ category.getId() }}">
+                <label for="animal_name">Name:</label>
+                <input id="animal_name" name="animal_name" type="text" class="form-control">
+                <label for="breed">Breed:</label>
+                <input id="breed" name="breed" type="text" class="form-control">
+                <label for="gender">Gender:</label>
+                <input id="gender" name="gender" type="text" class="form-control">
+                <label for="date_admitted">Date Admitted:</label>
+                <input id="date_admitted" name="date_admitted" type="date" class="form-control">
+
+                <button type="submit" class="btn">Add Animal</button>
+            </form>
+
+        </div>
+    </body>
+</html>
